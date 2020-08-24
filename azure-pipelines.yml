@@ -72,7 +72,7 @@ stages:
               inputs:
                 azureSubscription: 'DevConf2020Azure'
                 ScriptType: 'InlineScript'
-                Inline: 'New-AzResourceGroupDeployment -ResourceGroupName DevConf2020 -TemplateUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/release-pipeline-createAZResource/DevConfAzARM.json -TemplateParameterUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/release-pipeline-createAZResource/DevConfAzARM.parameters.json'
+                Inline: 'New-AzResourceGroupDeployment -ResourceGroupName DevConf2020 -TemplateUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/Release-pipeline-createAZResource/DevConfAzARM.json -TemplateParameterUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/Release-pipeline-createAZResource/DevConfAzARM.parameters.json'
                 azurePowerShellVersion: 'LatestVersion'
                 
             - task: AzureWebApp@1
