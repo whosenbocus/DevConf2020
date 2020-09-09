@@ -61,6 +61,8 @@ stages:
       pool:
         vmImage: 'ubuntu-latest'
       environment: dev
+      variables:
+        - group: Telemetry
       strategy:
         runOnce:
           deploy:
@@ -82,3 +84,16 @@ stages:
                 appName: 'DevConf2020'
                 package: '$(Agent.WorkFolder)/**/DevConf2020.zip'
                 deploymentMethod: 'auto'
+            - task: AzureAppServiceSettings@1
+              inputs:
+                azureSubscription: 'DevConf2020Azure'
+                appName: 'DevConf2020'
+                resourceGroupName: 'DevConf2020'
+                appSettings: |
+                    [
+                        {
+                            "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                            "value": "$(telemetryKey)",
+                            "slotSetting": false
+                        }
+                    ]
