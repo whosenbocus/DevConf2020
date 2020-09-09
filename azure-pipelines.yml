@@ -67,3 +67,9 @@ stages:
             steps:
             - download: current
               artifact: drop
+            - task: AzurePowerShell@5
+              inputs:
+                azureSubscription: 'DevConf2020Azure'
+                ScriptType: 'InlineScript'
+                Inline: 'New-AzResourceGroupDeployment -ResourceGroupName DevConf2020 -TemplateUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/Release-pipeline-createAZResource/DevConfAzARM.json -TemplateParameterUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/Release-pipeline-createAZResource/DevConfAzARM.parameters.json'
+                azurePowerShellVersion: 'LatestVersion'
