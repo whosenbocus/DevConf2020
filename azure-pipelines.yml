@@ -73,3 +73,11 @@ stages:
                 ScriptType: 'InlineScript'
                 Inline: 'New-AzResourceGroupDeployment -ResourceGroupName DevConf2020 -TemplateUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/Release-pipeline-createAZResource/DevConfAzARM.json -TemplateParameterUri https://raw.githubusercontent.com/whosenbocus/DevConf2020/Release-pipeline-createAZResource/DevConfAzARM.parameters.json'
                 azurePowerShellVersion: 'LatestVersion'
+
+            - task: AzureWebApp@1
+              inputs:
+                azureSubscription: 'DevConf2020Azure'
+                appType: 'webApp'
+                appName: 'DevConf2020'
+                package: '$(Agent.WorkFolder)/**/DevConf2020.zip'
+                deploymentMethod: 'auto'
